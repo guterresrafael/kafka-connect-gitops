@@ -18,7 +18,6 @@ spec:
       transaction.state.log.min.isr: 1
     storage:
       type: ephemeral
-    replicas: 1
   kafkaNodePools:
     - metadata:
         name: pool-inthub-dev
