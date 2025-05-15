@@ -9,7 +9,7 @@ spec:
     listeners:
       - name: plain
         port: 9092
-        type: cluster-ip
+        type: internal
         tls: false
     config:
       auto.create.topics.enable: "true"
