@@ -6,18 +6,26 @@ metadata:
 spec:
   kafka:
     version: 3.9.0
-    replicas: 1
     listeners:
       - name: plain
         port: 9092
         type: internal
         tls: false
+    config:
+      auto.create.topics.enable: "true"
+      offsets.topic.replication.factor: 1
+      transaction.state.log.replication.factor: 1
+      transaction.state.log.min.isr: 1
     storage:
       type: ephemeral
-  zookeeper:
     replicas: 1
-    storage:
-      type: ephemeral
-  entityOperator:
-    topicOperator: {}
-    userOperator: {}
+  kafkaNodePools:
+    - metadata:
+        name: pool-inthub-dev
+      spec:
+        roles:
+          - broker
+          - controller
+        storage:
+          type: ephemeral
+        replicas: 1
