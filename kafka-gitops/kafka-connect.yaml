@@ -20,6 +20,7 @@ spec:
     value.converter: org.apache.kafka.connect.json.JsonConverter
     key.converter.schemas.enable: false
     value.converter.schemas.enable: false
+    plugin.discovery: only_scan
   build:
     output:
       type: docker
