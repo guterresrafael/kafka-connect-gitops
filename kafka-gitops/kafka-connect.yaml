@@ -24,7 +24,7 @@ spec:
   build:
     output:
       type: docker
-      image: host.docker.internal:5000/inthub-dev-connect:latest
+      image: 192.168.20.4:5000/inthub-dev-connect:latest
     plugins:
       - name: ftp-source-connector
         artifacts:
