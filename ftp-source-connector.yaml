@@ -1,0 +1,21 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: ftp-source-example
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: inthub-dev
+spec:
+  class: br.com.datastreambrasil.kafka.connector.ftp.FtpSourceConnector
+  tasksMax: 1
+  config:
+    ftp.host: "ftp.example.com"
+    ftp.port: "21"
+    ftp.username: "user"
+    ftp.password: "password"
+    topic: "ftp-data"
+    file.pattern: ".*\\.csv"
+    poll.interval.ms: "10000"
+    mode: "ftp"
+    csv.separator: ";"
+    ftp.passive.mode: "true"

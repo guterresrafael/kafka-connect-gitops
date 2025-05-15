@@ -1,0 +1,35 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnect
+metadata:
+  name: inthub-dev
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: inthub-dev
+  annotations:
+    strimzi.io/use-connector-resources: "true"
+spec:
+  version: 3.7.0
+  replicas: 1
+  bootstrapServers: inthub-dev-kafka-bootstrap:9092
+  config:
+    group.id: connect-cluster
+    offset.storage.topic: connect-offsets
+    config.storage.topic: connect-configs
+    status.storage.topic: connect-status
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: false
+    value.converter.schemas.enable: false
+  build:
+    output:
+      type: docker
+      image: localhost:5000/inthub-dev-connect:latest
+    plugins:
+      - name: ftp-source-connector
+        artifacts:
+          - type: jar
+            url: https://github.com/datastreambrasil/ftp-source-connector/releases/download/v1.0.1/ftp-source-connector-1.0.1.jar
+  template:
+    pod:
+      imagePullSecrets:
+        - name: dockerpull
