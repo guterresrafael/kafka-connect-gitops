@@ -28,7 +28,7 @@ spec:
       - name: ftp-source-connector
         artifacts:
           - type: jar
-            url: https://github.com/datastreambrasil/ftp-source-connector/releases/download/v1.0.1/ftp-source-connector-1.0.1.jar
+            url: https://github.com/datastreambrasil/ftp-source-connector/releases/download/v1.0.0/ftp-source-connector-1.0.0-jar-with-dependencies.jar
   template:
     pod:
       imagePullSecrets:
